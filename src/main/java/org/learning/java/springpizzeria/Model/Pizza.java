@@ -1,6 +1,10 @@
 package org.learning.java.springpizzeria.Model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 import java.math.BigDecimal;
 
@@ -11,8 +15,15 @@ public class Pizza {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
+    @NotBlank
     private String name;
+    @Column(length = 60, nullable = false, unique = true)
+    @Size(min = 5, max = 60)
+    @NotBlank
     private String description;
+    @Min(0)
+    @NotNull
     private BigDecimal price;
 
 
