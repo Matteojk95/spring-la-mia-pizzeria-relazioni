@@ -19,8 +19,8 @@
     >
         <div class="MB-3">
             <label for="name" class="form-label"> Name </label>
-            < input type= "text" class= "form-control" id= "name" th:field = "*{pizza.name}" required
-            th:errorClass="is-invalid">
+            <input type="text" class="form-control" id="name" th:field="*{pizza.name}" required
+                   th:errorClass="is-invalid">
             <div class="invalid-feedback" th:if="${#fields.hasErrors('name')}">
                 <ul>
                     <li th:each="err : ${#fields.errors('name')}" th:text="${err}"></li>
@@ -29,8 +29,8 @@
         </div>
         <div class="MB-3">
             <label for="description" class="form-label"> Description </label>
-            < input type= "text" class= "form-control" id= "description" th:field = "*{pizza.description}" required
-            th:errorClass="is-invalid">
+            <input type="text" class="form-control" id="description" th:field="*{pizza.description}" required
+                   th:errorClass="is-invalid">
             <div class="invalid-feedback" th:if="${#fields.hasErrors('description')}">
                 <ul>
                     <li th:each="err : ${#fields.errors('description')}" th:text="${err}"></li>
@@ -40,8 +40,8 @@
 
         <div class="MB-3">
             <label for="price" class="form-label"> Price </label>
-            < input type= "number" class= "form-control" id= "price" th:field = "*{pizza.price}" required
-            th:errorClass="is-invalid">
+            <input type="number" class="form-control" id="price" th:field="*{pizza.price}" required
+                   th:errorClass="is-invalid">
             <div class="invalid-feedback" th:if="${#fields.hasErrors('price')}">
                 <ul>
                     <li th:each="err : ${#fields.errors('price')}" th:text="${err}"></li>
