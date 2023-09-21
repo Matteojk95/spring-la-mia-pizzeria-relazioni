@@ -12,7 +12,7 @@
     <h1> pizze</h1>
     <hr>
     <h2> le nostre proposte</h2>
-    <a class="btn btn-primary" th:href="@{/pizze/create}"> add pizza </a>
+    <a class="btn btn-primary" th:href="@{/pizza/create}"> add pizza </a>
     <table>
         <thead>
         <tr>
@@ -32,6 +32,21 @@
 
             <td>
                 <a th:href="@{/pizza/show/{id} (id=${pizza.id})}"> detail </a>
+            <td class="d-flex align-items-center justify-content-between">
+                <a class="btn btn-primary" th:href="@{/pizza/show/{id} (id=${pizza.id})}">
+                </a>
+
+                <a th:href="@{/pizza/edit/{id} (id=${pizza.id})}"> edit </a>
+                <a class="btn btn-primary" th:href="@{/pizza/edit/{id} (id=${pizza.id})}">
+                </a>
+
+                <form th:action="@{/pizza/delete/{id} (id=${pizza.id})}" method="POST">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fa-solid fa-trash-can"> </i>
+
+                    </button>
+
+                </form>
             </td>
         </tr>
         </tbody>

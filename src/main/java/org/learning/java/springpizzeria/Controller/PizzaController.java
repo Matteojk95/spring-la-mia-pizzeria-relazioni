@@ -46,23 +46,48 @@ public class PizzaController {
     @GetMapping("/create")
     public String create(Model model) {
         model.addAttribute("pizza", new Pizza());
-        return "pizze/form";
+        return "pizza/form";
     }
 
-    @PostMapping("create")
+    @PostMapping("/create")
     public String doCreate(@Valid @ModelAttribute("pizza") Pizza formPizza, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-
-            return "pizze/form";
-
+            return "pizza/form";
         }
         formPizza.setName(formPizza.getName().toUpperCase());
-
         pizzaRepository.save(formPizza);
-
-        return "redirect:/pizze";
-
+        return "redirect:/pizza";
     }
+
+    @GetMapping("/edit/{id}")
+    public String edit(@PathVariable Integer id, Model model) {
+        Optional<Pizza> result = pizzaRepository.findById(id);
+        if (result.isPresent()) {
+            model.addAttribute("pizza", result.get());
+            return "pizza/edit";
+        } else {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "pizza con id" + id + "not found");
+        }
+    }
+
+    @PostMapping("/edit/{id}")
+    public String doEdit(@PathVariable Integer id, @Valid @ModelAttribute("pizza") Pizza formPizza,
+                         BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "/pizza/edit";
+        }
+        pizzaRepository.save(formPizza);
+        return "redirect:/pizza";
+    }
+
+
+    @PostMapping("/delete/{id}")
+    public String deleteById(@PathVariable Integer id) {
+        //cancello la pizza
+        pizzaRepository.deleteById(id);
+        return "redirect:/pizza";
+    }
+
 }
 
 
