@@ -13,13 +13,13 @@
     <h1> Create pizza </h1>
     <form
             id="pizza-form"
-            th:action="@{pizza/create}"
+            th:action="@{/pizza/create}"
             th:object="${pizza}"
             method="POST"
     >
         <div class="MB-3">
             <label for="name" class="form-label"> Name </label>
-            <input type="text" class="form-control" id="name" th:field="${pizza.name}" required
+            <input type="text" class="form-control" id="name" th:field="${pizza.name}"
                    th:errorClass="is-invalid">
             <div class="invalid-feedback" th:if="${#fields.hasErrors('name')}">
                 <ul>
