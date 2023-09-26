@@ -9,11 +9,62 @@
 
 </head>
 <body>
-
 <h1 th:text="${pizza.name}"></h1>
-<h4 th:text="${pizza.description}"></h4>
-<h4 th:text="${pizza.price}"></h4>
+<div class="container">
+    <h1 th:text="${pizza.name}"></h1>
+    <hr>
+    <div class="row">
+        <dl>
+            <dt>Description</dt>
+            <dd th:text="${pizza.description}"></dd>
+            <dt>Price</dt>
+            <dd th:text="${pizza.price}"></dd>
 
+        </dl>
 
+    </div>
+
+    <div class="row">
+        <h2>Offer</h2>
+        <div class="my-3">
+            <a class="btn btn-primary" th:href="@{/offer/create(pizzaId=${pizza.id})}">Add
+                Offer</a>
+        </div>
+        <table class="table" th:if="${pizza.offer.size() > 0}">
+            <thead>
+            <tr>
+                <th>Start Date</th>
+                <th>Expire Date</th>
+                <th> Title</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="offer : ${pizza.offer}">
+                <td th:text="${offer.startDate}"></td>
+                <td th:text="${offer.expireDate}"></td>
+                <td th:text="${offer.title}"></td>
+                <td class="d-flex align-items-center justify-content-end">
+                    <a th:href="@{/offer/edit/{offerId}(offerId=${offer.id})}"
+                       class="btn btn-primary me-1">
+                        <i class="fa-solid fa-pen-to-square"></i>
+                    </a>
+                    <form th:action="@{/offer/delete/{offerId}(offerId = ${offer.id})}"
+                          method="POST">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fa-solid fa-trash-can"></i>
+                        </button>
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <div class="alert alert-info" th:unless="${pizza.offer.size() > 0}">
+            There are no offer
+        </div>
+
+    </div>
+
+</div>
 </body>
 </html>

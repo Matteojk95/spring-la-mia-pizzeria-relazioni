@@ -7,6 +7,7 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 @Entity
 @Table(name = "pizza")
@@ -25,6 +26,10 @@ public class Pizza {
     @Min(0)
     @NotNull
     private BigDecimal price;
+
+
+    @OneToMany(mappedBy = "pizza", cascade = {CascadeType.REMOVE})
+    private List<Offer> offer;
 
 
     //getter e setter
@@ -60,4 +65,11 @@ public class Pizza {
         this.id = id;
     }
 
+    public List<Offer> getOffer() {
+        return offer;
+    }
+
+    public void setOffer(List<Offer> offer) {
+        this.offer = offer;
+    }
 }
