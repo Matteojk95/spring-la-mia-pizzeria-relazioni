@@ -72,4 +72,21 @@ public class Pizza {
     public void setOffer(List<Offer> offer) {
         this.offer = offer;
     }
+//metodi
+
+    public boolean availableOffer() {
+        if (offer.size() > 0) {
+            return true;
+        } else {
+            return false;
+        }
+
+
+    }
+
 }
+
+
+
+
+

@@ -27,6 +27,7 @@
 
         <tr th:each="pizza: ${pizze}">
             <td th:text="${pizza.name}"></td>
+            <td></td>
             <td th:text="${pizza.description}"></td>
             <td th:text="${pizza.price}"></td>
 
@@ -39,6 +40,7 @@
                 <a th:href="@{/pizza/edit/{id} (id=${pizza.id})}"> edit </a>
                 <a class="btn btn-primary" th:href="@{/pizza/edit/{id} (id=${pizza.id})}">
                 </a>
+
 
                 <form th:action="@{/pizza/delete/{id} (id=${pizza.id})}" method="POST">
                     <button type="submit" class="btn btn-primary">
