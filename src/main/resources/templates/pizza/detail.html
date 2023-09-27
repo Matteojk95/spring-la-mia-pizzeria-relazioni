@@ -11,7 +11,6 @@
 <body>
 <h1 th:text="${pizza.name}"></h1>
 <div class="container">
-    <h1 th:text="${pizza.name}"></h1>
     <hr>
     <div class="row">
         <dl>
@@ -27,7 +26,7 @@
     <div class="row">
         <h2>Offer</h2>
         <div class="my-3">
-            <a class="btn btn-primary" th:href="@{/offer/create(pizzaId=${pizza.id})}">Add
+            <a class="btn btn-primary" th:href="@{/offers/create(pizzaId=${pizza.id})}">Add
                 Offer</a>
         </div>
         <table class="table" th:if="${pizza.offer.size() > 0}">
@@ -45,11 +44,11 @@
                 <td th:text="${offer.expireDate}"></td>
                 <td th:text="${offer.title}"></td>
                 <td class="d-flex align-items-center justify-content-end">
-                    <a th:href="@{/offer/edit/{offerId}(offerId=${offer.id})}"
+                    <a th:href="@{/offers/edit/{offerId}(offerId=${offer.id})}"
                        class="btn btn-primary me-1">
                         <i class="fa-solid fa-pen-to-square"></i>
                     </a>
-                    <form th:action="@{/offer/delete/{offerId}(offerId = ${offer.id})}"
+                    <form th:action="@{/offers/delete/{offerId}(offerId = ${offer.id})}"
                           method="POST">
                         <button type="submit" class="btn btn-primary">
                             <i class="fa-solid fa-trash-can"></i>

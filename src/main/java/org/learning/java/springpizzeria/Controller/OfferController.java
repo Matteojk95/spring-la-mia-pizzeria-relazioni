@@ -15,7 +15,7 @@ import java.time.LocalDate;
 import java.util.Optional;
 
 @Controller
-@RequestMapping("/offer")
+@RequestMapping("/offers")
 public class OfferController {
     @Autowired
     private OfferRepository offerRepository;
@@ -31,7 +31,7 @@ public class OfferController {
             offer.setPizza(pizza);
             offer.setStartDate(LocalDate.now().plusDays(30));
             model.addAttribute("offer", offer);
-            return "offer/form";
+            return "offers/form";
         } else {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "pizza con id" + pizzaId + "nessuna pizza trovata");
 
@@ -49,7 +49,7 @@ public class OfferController {
         Optional<Offer> offerResult = offerRepository.findById(id);
         if (offerResult.isPresent()) {
             model.addAttribute("offer", offerResult.get());
-            return "/offer/edit";
+            return "/offers/edit";
         } else {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
 
