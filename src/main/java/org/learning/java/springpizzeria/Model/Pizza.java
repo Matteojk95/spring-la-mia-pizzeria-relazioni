@@ -30,7 +30,8 @@ public class Pizza {
 
     @OneToMany(mappedBy = "pizza", cascade = {CascadeType.REMOVE})
     private List<Offer> offer;
-
+    @ManyToMany
+    private List<Ingredienti> ingredients;
 
     //getter e setter
     public String getName() {
@@ -72,7 +73,16 @@ public class Pizza {
     public void setOffer(List<Offer> offer) {
         this.offer = offer;
     }
-//metodi
+
+    public List<Ingredienti> getIngredients() {
+        return ingredients;
+    }
+
+    public void setIngredients(List<Ingredienti> ingredients) {
+        this.ingredients = ingredients;
+    }
+
+    //metodi
 
     public boolean availableOffer() {
         if (offer.size() > 0) {

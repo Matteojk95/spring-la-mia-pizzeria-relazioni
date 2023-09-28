@@ -2,7 +2,9 @@ package org.learning.java.springpizzeria.Controller;
 
 
 import jakarta.validation.Valid;
+import org.learning.java.springpizzeria.Model.Ingredienti;
 import org.learning.java.springpizzeria.Model.Pizza;
+import org.learning.java.springpizzeria.Repository.IngredientiRepository;
 import org.learning.java.springpizzeria.Repository.PizzaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,6 +24,8 @@ public class PizzaController {
 
     @Autowired
     private PizzaRepository pizzaRepository;
+    @Autowired
+    private IngredientiRepository ingredientiRepository;
 
     @GetMapping
     public String index(Model model) {
@@ -45,13 +49,16 @@ public class PizzaController {
 
     @GetMapping("/create")
     public String create(Model model) {
+        List<Ingredienti> ingredientsList = ingredientiRepository.findAll();
+        model.addAttribute("ingredientsList", ingredientsList);
         model.addAttribute("pizza", new Pizza());
         return "pizza/form";
     }
 
     @PostMapping("/create")
-    public String doCreate(@Valid @ModelAttribute("pizza") Pizza formPizza, BindingResult bindingResult) {
+    public String doCreate(@Valid @ModelAttribute("pizza") Pizza formPizza, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
+            model.addAttribute("ingredientsList", ingredientiRepository.findAll());
             return "pizza/form";
         }
         formPizza.setName(formPizza.getName().toUpperCase());

@@ -13,14 +13,23 @@
 <div class="container">
     <hr>
     <div class="row">
-        <dl>
-            <dt>Description</dt>
-            <dd th:text="${pizza.description}"></dd>
-            <dt>Price</dt>
-            <dd th:text="${pizza.price}"></dd>
 
-        </dl>
+        <div class="col-6">
+            <dl>
+                <dt>Description</dt>
+                <dd th:text="${pizza.description}"></dd>
+                <dt>Price</dt>
+                <dd th:text="${pizza.price}"></dd>
 
+            </dl>
+        </div>
+    </div>
+
+    <div class="col-6">
+        <h4>Ingredients</h4>
+        <ul>
+            <li th:each="ing : ${pizza.ingredients}" th:text="${ing.name}"></li>
+        </ul>
     </div>
 
     <div class="row">

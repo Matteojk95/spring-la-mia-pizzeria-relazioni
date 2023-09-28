@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<div class="container">
+
+    <div th:if="${message != null}">
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <span th:text="${message}"></span>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    </div>
+    <h1> Ingredienti </h1>
+
+    <section class="mb-5">
+        <form
+                th:action="@{/ingredients/create}"
+                id="ingredients-form"
+                method="POST"
+                th:object="${ingredientsObj}"
+        >
+            <div class="input-group">
+                <input type="text" class="form-control" id="ingredients-name" th:field="*{name}"
+                       placeholder="Add a ingredient">
+                <button type="submit" class="btn btn-primary">Save</button>
+            </div>
+        </form>
+    </section>
+
+    <section>
+        <ul class="list-group">
+            <li
+                    class="list-group-item d-flex align-items-center justify-content-between"
+                    th:each="cat : ${ingredientsList}"
+            >
+                <div th:text="${ing.name}"></div>
+                <div>
+
+                    <form th:action="@{/ingredients/delete/{ingId}(catId=${ing.id})}" method="POST">
+                        <button class="btn btn-primary" type="submit"><i class="fa-solid fa-trash-can"></i>
+                        </button>
+                    </form>
+                </div>
+            </li>
+        </ul>
+    </section>
+</div>
+</body>
+</html>
